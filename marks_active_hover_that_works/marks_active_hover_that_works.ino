@@ -1,18 +1,15 @@
- //
+//
 // Created by Florian VanKampen on 2019-06-17.
 //
 
 #include <rnrquad.h>
 
-float KP = 0.15;
-float KD = 1.9;
+float KP = .15;
+float KD = 3;
 float KI = 0.05;
-float target = 1;
-float minHoverThrottle = .6;
-//.15
-//1.9
-//0.2
-//.569
+float target = .3;
+float minHoverThrottle = .562 ;
+
 PID dPID;
 
 float throttle = 0;
@@ -37,7 +34,7 @@ void loop()
 
   if (controllerState.throttle > .1 )
   {
-    controllerState.throttle = constrain(dPID.tstep(sensorState.rangeDown), .3 , .8);
+    controllerState.throttle = constrain(dPID.tstep(sensorState.rangeDown), .3, .8);
   }
 
   else
@@ -45,5 +42,20 @@ void loop()
     controllerState.throttle = 0;
   }
 
+   if (sensorState.rangeForward < .5 )
+  {controllerState.rightStickYPosition = -0.5;}
+
+  if (sensorState.rangeRight < .5 )
+  {controllerState.rightStickXPosition = -0.5;}
+
+  if (sensorState.rangeLeft < .5 )
+  {controllerState.rightStickXPosition = +0.5;}
+  
+  if (sensorState.rangeUp < .5 )
+  {controllerState.throttle = 0.4;}
+  
   setControllerState(controllerState);
 }
+ 
+
+  

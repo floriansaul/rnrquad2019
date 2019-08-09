@@ -6,12 +6,12 @@
 
 float KP = 0.15;
 float KD = 1.9;
-float KI = 0;
-float target = .6;
-float minHoverThrottle = .55;
-//.2
-//.75
-//0
+float KI = 0.05;
+float target = 1;
+float minHoverThrottle = .6;
+//.15
+//1.9
+//0.2
 //.569
 PID dPID;
 
